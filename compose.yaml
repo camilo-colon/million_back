@@ -1,0 +1,13 @@
+﻿services:
+  million:
+    image: million
+    build:
+      context: .
+      dockerfile: million/Dockerfile
+
+  million.application:
+    image: million.application
+    build:
+      context: .
+      dockerfile: million.application/Dockerfile
+
