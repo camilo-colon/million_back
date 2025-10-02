@@ -4,6 +4,7 @@ namespace million.domain.properties;
 
 public class PropertyImage : Entity
 {
+    public Guid PropertyId { get; }
     public string File { get; }
     public bool  Enabled { get; }
 
