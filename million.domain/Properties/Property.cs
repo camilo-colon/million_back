@@ -7,7 +7,7 @@ public class Property : Entity
     public Guid OwnerId { get; }
     
     public readonly List<PropertyImage> _images = [];
-    
+
     public readonly List<PropertyTrace> _traces = [];
     public string Name { get; }
     public string Address { get; }

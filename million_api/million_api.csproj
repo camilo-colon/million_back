@@ -19,6 +19,11 @@
 
     <ItemGroup>
       <ProjectReference Include="..\million.application\million.application.csproj" />
+      <ProjectReference Include="..\million.infrastructure\million.infrastructure.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Controllers\" />
     </ItemGroup>
 
 </Project>
