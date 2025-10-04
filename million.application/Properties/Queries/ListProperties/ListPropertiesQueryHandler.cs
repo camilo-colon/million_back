@@ -1,5 +1,7 @@
 using MediatR;
+using million.domain.Common.specifications;
 using million.domain.properties;
+using million.domain.properties.specifications;
 
 namespace million.application.Properties.Queries.ListProperties;
 
@@ -7,6 +9,7 @@ public class ListPropertiesQueryHandler(IPropertyRepository repository) : IReque
 {
     public async Task<List<Property>> Handle(ListPropertiesQuery request, CancellationToken cancellationToken)
     {
-        return await repository.Find();
+        var spec = new PropertyByNameSpec("Rivage Bal");
+        return await repository.FindAsync(spec, cancellationToken);
     }
 }
