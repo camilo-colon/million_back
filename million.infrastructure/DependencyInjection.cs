@@ -1,4 +1,5 @@
-﻿using million.infrastructure.Properties.Persistence;
+﻿using million.infrastructure.Common.Persistence;
+using million.infrastructure.Properties.Persistence;
 
 namespace million.infrastructure;
 
@@ -20,12 +21,12 @@ public static class DependencyInjection
 
     private static IServiceCollection AddPersistence(this IServiceCollection services, IConfiguration configuration)
     {
+        BsonClassMapRegister.RegisterFromAssembly(typeof(BsonClassMapRegister).Assembly);
+        
         var connectionString = configuration.GetSection("MongoDbSettings:ConnectionString").Value;
         var databaseName = configuration.GetSection("MongoDbSettings:DatabaseName").Value;
-        
         var client = new MongoClient(connectionString);
         var database = client.GetDatabase(databaseName);
-        
         services.AddSingleton(database);
 
         services.AddScoped<IPropertyRepository, PropertyMongoRepository>();

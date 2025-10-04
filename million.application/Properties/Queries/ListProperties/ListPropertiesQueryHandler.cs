@@ -3,10 +3,10 @@ using million.domain.properties;
 
 namespace million.application.Properties.Queries.ListProperties;
 
-public class ListPropertiesQueryHandler() : IRequestHandler<ListPropertiesQuery, List<Property>>
+public class ListPropertiesQueryHandler(IPropertyRepository repository) : IRequestHandler<ListPropertiesQuery, List<Property>>
 {
-    public Task<List<Property>> Handle(ListPropertiesQuery request, CancellationToken cancellationToken)
+    public async Task<List<Property>> Handle(ListPropertiesQuery request, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        return await repository.Find();
     }
 }

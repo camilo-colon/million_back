@@ -18,8 +18,4 @@
       <ProjectReference Include="..\million.domain\million.domain.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Common\Persistence\" />
-    </ItemGroup>
-
 </Project>

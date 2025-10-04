@@ -8,7 +8,7 @@ public class PropertyImage : Entity
     public string File { get; }
     public bool  Enabled { get; }
 
-    public PropertyImage(string file, bool enabled, Guid? id) : base(id ?? Guid.NewGuid())
+    public PropertyImage(string file, bool enabled,Guid ? id) : base(id ?? Guid.NewGuid())
     {
         File = file;
         Enabled = enabled;

@@ -1,9 +1,11 @@
+using million.api;
 using million.application;
 using million.infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 {
     builder.Services
+        .AddPresentation()
         .AddApplication()
         .AddInfrastructure(builder.Configuration);
 }
@@ -14,13 +16,16 @@ builder.Services.AddOpenApi();
 
 var app = builder.Build();
 
-app.MapControllers();
-
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
+    app.UseSwaggerUI(options =>
+    {
+        options.SwaggerEndpoint("/openapi/v1.json", "OpenAPI V1");
+    });
 }
 
 app.UseHttpsRedirection();
+app.MapControllers();
 app.Run();

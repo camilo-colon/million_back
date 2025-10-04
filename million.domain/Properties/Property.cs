@@ -4,16 +4,19 @@ namespace million.domain.properties;
 
 public class Property : Entity
 {
-    public Guid OwnerId { get; }
     
-    public readonly List<PropertyImage> _images = [];
-
-    public readonly List<PropertyTrace> _traces = [];
-    public string Name { get; }
-    public string Address { get; }
-    public decimal Price { get; }
-    public string CodeInternal { get; }
-    public int Year { get; }
+    private readonly List<Guid> _imagesIds = [];
+    
+    private readonly List<Guid> _tracesIds = [];
+    
+    public Guid OwnerId { get; private init; }
+    public string Name { get; private init; }
+    public string Address { get; private init; }
+    public decimal Price { get; private init; }
+    public string CodeInternal { get; private init; }
+    public int Year { get; private init; }
+    public IReadOnlyList<Guid> ImagesIds => _imagesIds.AsReadOnly();
+    public IReadOnlyList<Guid> TracesIds => _tracesIds.AsReadOnly();
 
     public Property(
         Guid ownerId, 
@@ -22,7 +25,7 @@ public class Property : Entity
         decimal price, 
         string codeInternal, 
         int year, 
-        Guid? id = null) : base(id ?? Guid.NewGuid())
+        Guid? id = null) : base(id ?? Guid.NewGuid()) 
     {
         OwnerId = ownerId;
         Name = name;
@@ -32,7 +35,5 @@ public class Property : Entity
         Year = year;
     }
     
-#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
-    private Property() {}
-#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
+    public Property() {}
 }

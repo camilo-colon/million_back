@@ -4,13 +4,13 @@ namespace million.domain.owners;
 
 public class Owner : Entity
 {
-    public readonly List<Guid> _propertyIds = [];
+    public readonly List<string> _propertyIds = [];
     public string Name { get; }
     public string Address { get; }
     public string Photo { get; } 
     public DateTime Birthday { get; }
 
-    public Owner(string name, string address, string photo, DateTime birthday, Guid? id) : base(id ?? Guid.NewGuid())
+    public Owner(string name, string address, string photo, DateTime birthday, Guid? id) : base(id ?? Guid.NewGuid()) 
     {
         Name = name;
         Address = address;

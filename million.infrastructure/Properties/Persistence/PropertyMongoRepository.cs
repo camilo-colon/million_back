@@ -1,4 +1,5 @@
 using million.domain.properties;
+using MongoDB.Bson;
 using MongoDB.Driver;
 
 namespace million.infrastructure.Properties.Persistence;
@@ -7,8 +8,8 @@ public class PropertyMongoRepository(IMongoDatabase database) : IPropertyReposit
 {
     private readonly IMongoCollection<Property> _collection = database.GetCollection<Property>("properties");
     
-    public Task<List<Property>> GetByFilters(string? name, string? address, string? price,  int limit, int offset)
+    public async Task<List<Property>> Find()
     {
-        throw new NotImplementedException();
+        return await _collection.Find(new BsonDocument()).ToListAsync();
     }
 }

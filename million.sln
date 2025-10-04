@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "million_api", "million_api\million_api.csproj", "{62A2916C-DB5C-4101-B306-45CDCEE96AAF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "million.api", "million.api\million.api.csproj", "{62A2916C-DB5C-4101-B306-45CDCEE96AAF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{7CD13EB0-1D7C-4557-B2E3-AFB774E7FAAD}"
 	ProjectSection(SolutionItems) = preProject
