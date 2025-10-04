@@ -1,4 +1,4 @@
-namespace million.api.Contracts.Properties;
+namespace million.api.DTOs.Properties;
 
 public record GetPropertiesRequest
 {

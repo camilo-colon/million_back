@@ -1,14 +1,13 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using million.api.Contracts.Properties;
+using million.api.DTOs.Properties;
 using million.application.Properties.Queries.ListProperties;
-using million.domain.properties;
 
 namespace million.api.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class PropertiesController(ISender sender, IPropertyRepository repository) : ControllerBase
+public class PropertiesController(ISender sender) : ControllerBase
 {
     [HttpGet]
     public async Task<IActionResult> Index([FromQuery] GetPropertiesRequest request)
