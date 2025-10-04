@@ -1,6 +1,7 @@
 using million.domain.Common.specifications;
 using million.domain.properties;
 using million.infrastructure.Common.Persistence.mongodb;
+using MongoDB.Bson;
 using MongoDB.Driver;
 
 namespace million.infrastructure.Properties.Persistence;
@@ -13,5 +14,10 @@ public class PropertyMongoRepository(IMongoDatabase database) : IPropertyReposit
     {
         var filters = SpecificationToMongoFilterConverter<Property>.Converter(spec);
         return _collection.Find(filters).ToListAsync(token);
+    }
+
+    public Task<List<Property>> AllAsync(CancellationToken token)
+    {
+        return _collection.Find(new BsonDocument()).ToListAsync(token);
     }
 }

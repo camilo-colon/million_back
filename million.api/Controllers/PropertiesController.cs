@@ -17,9 +17,8 @@ public class PropertiesController(ISender sender, IPropertyRepository repository
         {
             Name = request.Name,
             Address = request.Address,
-            Price = request.Price,
-            Limit = request.Limit,
-            Offset = request.Offset
+            MinPrice = request.MinPrice,
+            MaxPrice = request.MaxPrice
         };
         var response = await sender.Send(query);
         return Ok(response);

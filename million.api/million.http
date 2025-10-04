@@ -1,6 +1,7 @@
-@million_HostAddress = http://localhost:5004
+@host = http://localhost:5004
 
-GET {{million_HostAddress}}/weatherforecast/
+###
+GET {{host}}/api/Properties?name=Rivage&minPrice=0&maxPrice=26696900
 Accept: application/json
 
 ###
