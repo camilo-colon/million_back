@@ -3,5 +3,5 @@ obj/
 /packages/
 riderModule.iml
 /_ReSharper.Caches/
-mongodb_data/
+/mongodb_data/
 .idea/
