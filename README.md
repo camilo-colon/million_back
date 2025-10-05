@@ -129,7 +129,6 @@ To add a new domain model:
 1. Create the entity class in the Domain layer
 2. Create a configuration class implementing `IBsonMapConfiguration` in the Infrastructure layer
 3. Define the mapping using `BsonClassMap.RegisterClassMap`
-4. Register the configuration in the dependency injection setup
 
 ## API Documentation
 API documentation is available through Swagger UI when the application runs in development mode.
@@ -141,10 +140,89 @@ API documentation is available through Swagger UI when the application runs in d
 - Dependencies toward the center (Domain)
 - Dependency inversion
 
-### 2. CQRS (Command Query Responsibility Segregation)
-- Separation of read and write operations
-- Commands for modifications
-- Queries for retrievals
+### 2. CQRS with MediatR
+The project implements the CQRS pattern using MediatR library, separating read and write operations into Queries and Commands.
+
+#### Query Implementation Example
+
+1. **Query Definition (ListPropertiesQuery.cs)**
+```csharp
+public record ListPropertiesQuery : IRequest<List<Property>>
+{ 
+    public string? Name { get; set; }
+    public string? Address { get; set; }
+    public decimal? MinPrice { get; set; }
+    public decimal? MaxPrice { get; set; }
+}
+```
+
+2. **Query Handler (ListPropertiesQueryHandler.cs)**
+```csharp
+public class ListPropertiesQueryHandler(IPropertyRepository repository) 
+    : IRequestHandler<ListPropertiesQuery, List<Property>>
+{
+    public async Task<List<Property>> Handle(
+        ListPropertiesQuery request, 
+        CancellationToken cancellationToken)
+    {
+        var spec = new PropertySpecificationBuilder()
+            .WithName(request.Name)
+            .WithAddress(request.Address)
+            .WithRangePrice(request.MinPrice, request.MaxPrice)
+            .Build(); 
+
+        return await repository.FindAsync(spec, cancellationToken);
+    }
+}
+```
+
+3. **Controller Implementation (PropertiesController.cs)**
+```csharp
+[ApiController]
+[Route("api/[controller]")]
+public class PropertiesController(ISender sender) : ControllerBase
+{
+    [HttpGet]
+    public async Task<IActionResult> Index([FromQuery] GetPropertiesRequest request)
+    {
+        var query = new ListPropertiesQuery
+        {
+            Name = request.Name,
+            Address = request.Address,
+            MinPrice = request.MinPrice,
+            MaxPrice = request.MaxPrice
+        };
+        var response = await sender.Send(query);
+        return Ok(response);
+    }
+}
+```
+
+#### Key Components and Flow:
+1. **Queries/Commands**: 
+   - Implement `IRequest<TResponse>`
+   - Define the request parameters
+   - Specify the return type
+
+2. **Handlers**:
+   - Implement `IRequestHandler<TRequest, TResponse>`
+   - Contain the business logic
+   - Use domain services and repositories
+   - Return the response
+
+3. **Controllers**:
+   - Inject `ISender` interface
+   - Map API requests to queries/commands
+   - Use `sender.Send()` to dispatch requests
+   - Handle responses
+
+#### Benefits:
+- **Separation of Concerns**: Clear separation between API models, domain logic, and data access
+- **Single Responsibility**: Each handler focuses on one specific use case
+- **Maintainability**: Easy to add new features without modifying existing code
+- **Testability**: Handlers can be tested in isolation
+- **Middleware Support**: MediatR pipeline for cross-cutting concerns
+- **Scalability**: Easy to add new queries and commands as the application grows
 
 ### 3. Dependency Injection
 - Each layer registers its services
