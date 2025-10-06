@@ -1,7 +1,7 @@
 @host = http://localhost:5004
 
 ###
-GET {{host}}/api/Properties?address=Miami Beach, FL 33140
+GET {{host}}/api/Properties
 Accept: application/json
 
 ###

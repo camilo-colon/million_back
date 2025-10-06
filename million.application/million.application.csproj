@@ -12,11 +12,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Properties\Commands\" />
-    </ItemGroup>
-
-    <ItemGroup>
       <ProjectReference Include="..\million.domain\million.domain.csproj" />
     </ItemGroup>
-
+    
 </Project>
