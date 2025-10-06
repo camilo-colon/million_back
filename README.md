@@ -412,7 +412,7 @@ This project is licensed under the MIT License.
 
 ## 👥 Authors
 
-- Your Name - Initial work
+- Camilo Colon - Initial work
 
 ## 🙏 Acknowledgments
 
