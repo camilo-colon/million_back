@@ -68,6 +68,47 @@ Generic repository with specification support for MongoDB:
 
 ### Installation
 
+#### Option 1: Using Docker Compose (Recommended)
+
+1. **Clone the repository**
+```bash
+git clone <repository-url>
+cd million
+```
+
+2. **Start all services with Docker Compose**
+```bash
+docker-compose up -d
+```
+
+This will start:
+- MongoDB on `localhost:27017`
+- API on `http://localhost:8000`
+
+The API will be available at:
+- HTTP: `http://localhost:8000`
+- OpenAPI: `http://localhost:8000/openapi/v1.json`
+- Swagger UI: `http://localhost:8000/swagger` (in Development mode)
+
+3. **View logs**
+```bash
+# View all logs
+docker-compose logs -f
+
+# View API logs only
+docker-compose logs -f api
+
+# View MongoDB logs only
+docker-compose logs -f mongodb
+```
+
+4. **Stop all services**
+```bash
+docker-compose down
+```
+
+#### Option 2: Local Development
+
 1. **Clone the repository**
 ```bash
 git clone <repository-url>
@@ -76,13 +117,8 @@ cd million
 
 2. **Start MongoDB using Docker Compose**
 ```bash
-docker-compose up -d
+docker-compose up -d mongodb
 ```
-
-This will start MongoDB on `localhost:27017` with credentials:
-- Username: `admin`
-- Password: `password`
-- Database: `million`
 
 3. **Restore dependencies**
 ```bash
@@ -119,7 +155,11 @@ Get a list of properties with optional filters.
 
 **Example Request:**
 ```bash
-curl "https://localhost:5001/api/properties?name=Casa&minPrice=100000&maxPrice=500000"
+# Using Docker Compose
+curl "http://localhost:8000/api/properties?name=Casa&minPrice=100000&maxPrice=500000"
+
+# Using local development
+curl "http://localhost:5000/api/properties?name=Casa&minPrice=100000&maxPrice=500000"
 ```
 
 **Example Response:**
@@ -341,8 +381,9 @@ export MongoDbSettings__DatabaseName="million"
 
 ## 🐳 Docker
 
-### MongoDB Container
-The project uses Docker Compose for MongoDB:
+### Full Stack with Docker Compose
+
+The project includes a complete Docker Compose setup that runs both the API and MongoDB:
 
 ```yaml
 services:
@@ -351,25 +392,75 @@ services:
     ports:
       - "27017:27017"
     volumes:
-      - ./mongodb_data:/data/db
+      - mongodb_data:/data/db
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/test --quiet
+
+  api:
+    build:
+      context: .
+      dockerfile: million.api/Dockerfile
+    ports:
+      - "8000:8080"
     environment:
-      MONGO_INITDB_ROOT_USERNAME: admin
-      MONGO_INITDB_ROOT_PASSWORD: password
+      - MongoDbSettings__ConnectionString=mongodb://admin:password@mongodb:27017/
+    depends_on:
+      mongodb:
+        condition: service_healthy
 ```
 
-**Commands:**
+### Docker Commands
+
+**Start all services:**
 ```bash
-# Start MongoDB
 docker-compose up -d
+```
 
-# Stop MongoDB
+**Rebuild and start:**
+```bash
+docker-compose up -d --build
+```
+
+**Stop all services:**
+```bash
 docker-compose down
+```
 
-# View logs
+**Stop and remove volumes:**
+```bash
+docker-compose down -v
+```
+
+**View logs:**
+```bash
+# All services
+docker-compose logs -f
+
+# Specific service
+docker-compose logs -f api
 docker-compose logs -f mongodb
+```
 
-# Access MongoDB shell
-docker exec -it mongodb mongosh -u admin -p password
+**Access MongoDB shell:**
+```bash
+docker exec -it million_mongodb mongosh -u admin -p password
+```
+
+**Check service status:**
+```bash
+docker-compose ps
+```
+
+### Building the API Image Manually
+
+```bash
+# Build the image
+docker build -t million-api -f million.api/Dockerfile .
+
+# Run the container
+docker run -p 8000:8080 \
+  -e MongoDbSettings__ConnectionString="mongodb://admin:password@host.docker.internal:27017/" \
+  million-api
 ```
 
 ## 📚 Technology Stack
