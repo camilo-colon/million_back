@@ -1,7 +1,7 @@
 @host = http://localhost:5004
 
 ###
-GET {{host}}/api/Properties?name=Rivage&minPrice=0&maxPrice=26696900
+GET {{host}}/api/Properties?address=Miami Beach, FL 33140
 Accept: application/json
 
 ###

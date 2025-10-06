@@ -1,9 +1,5 @@
-using million.domain.Common.specifications;
+using million.domain.common;
 
 namespace million.domain.properties;
 
-public interface IPropertyRepository
-{
-    Task<List<Property>> FindAsync(ISpecification<Property> spec, CancellationToken token);
-    Task<List<Property>>AllAsync(CancellationToken token);
-}
+public interface IPropertyRepository : IGenericRepository<Property>;

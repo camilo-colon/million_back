@@ -12,6 +12,7 @@ public class PropertyConfiguration : IBsonMapConfiguration
         BsonClassMap.RegisterClassMap<Property>(cm =>
         {
             cm.AutoMap();
+            
             cm.MapProperty(c => c.CodeInternal).SetElementName("code_internal");
             cm.MapProperty(c => c.Address).SetElementName("address");
             cm.MapProperty(c => c.Name).SetElementName("name");
@@ -19,9 +20,6 @@ public class PropertyConfiguration : IBsonMapConfiguration
             cm.MapProperty(c => c.Year).SetElementName("year");
             
             cm.MapProperty(c => c.OwnerId).SetElementName("owner_id").SetSerializer(GuidSerializer.StandardInstance);
-            
-            cm.MapProperty(c => c.ImagesIds).SetElementName("images_ids");
-            cm.MapProperty(c => c.TracesIds).SetElementName("traces_ids");
             
             cm.SetIgnoreExtraElements(true);
         });

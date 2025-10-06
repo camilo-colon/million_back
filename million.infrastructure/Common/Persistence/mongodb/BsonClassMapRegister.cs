@@ -20,6 +20,7 @@ public class BsonClassMapRegister
             
             foreach (var configType in configTypes)
             {
+                 Console.WriteLine($"Registering BsonMap configuration for: {configType.FullName}");
                  var config = (IBsonMapConfiguration)Activator.CreateInstance(configType)!;
                  config.Configure();
             }

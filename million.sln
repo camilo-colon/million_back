@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "million.domain", "million.d
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "million.infrastructure", "million.infrastructure\million.infrastructure.csproj", "{BF28E9FD-CBCC-4853-AF2D-D776B315657B}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{C97AD273-CB45-4ECF-820C-89A81EA39334}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{B6F7A9B7-5464-41EE-B639-4FE895E7BAAC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,5 +39,11 @@ Global
 		{BF28E9FD-CBCC-4853-AF2D-D776B315657B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BF28E9FD-CBCC-4853-AF2D-D776B315657B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BF28E9FD-CBCC-4853-AF2D-D776B315657B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{62A2916C-DB5C-4101-B306-45CDCEE96AAF} = {C97AD273-CB45-4ECF-820C-89A81EA39334}
+		{84DD453C-BE58-4B29-8FAE-1A5AA3C0941F} = {C97AD273-CB45-4ECF-820C-89A81EA39334}
+		{B0FF40F0-9E0B-4E4D-BA0F-1C57D5BBEFCD} = {C97AD273-CB45-4ECF-820C-89A81EA39334}
+		{BF28E9FD-CBCC-4853-AF2D-D776B315657B} = {C97AD273-CB45-4ECF-820C-89A81EA39334}
 	EndGlobalSection
 EndGlobal
