@@ -18,5 +18,7 @@
   &lt;TestAncestor&gt;
     &lt;TestId&gt;NUnit3x::35332FE1-C270-494A-972D-2AE5C55E7FAD::net9.0::Million.Application.UnitTests.Properties.Queries.ListPropertiesQueryHandlerTest&lt;/TestId&gt;
     &lt;TestId&gt;NUnit3x::D5D07867-AE8B-4CD0-A24A-C2EB6BF10A7D::net9.0::Million.Domain.UnitTests.Common.Specifications.SpecificationTest&lt;/TestId&gt;
+    &lt;TestId&gt;NUnit3x::2D323009-4A9A-4EB6-B392-90BC56C649E5::net9.0::Million.Infrastructure.IntegrationTests.Common.Persistence.SpecificationToMongoFilterConverterTest&lt;/TestId&gt;
+    &lt;TestId&gt;NUnit3x::2D323009-4A9A-4EB6-B392-90BC56C649E5::net9.0::Million.Infrastructure.IntegrationTests.Common.Persistence.GenericMongoRepositoryTest&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

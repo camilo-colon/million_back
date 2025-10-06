@@ -1,10 +1,8 @@
-using MongoDB.Bson;
-using MongoDB.Bson.Serialization;
-using MongoDB.Bson.Serialization.Conventions;
+using million.infrastructure.Common.Persistence;
 using MongoDB.Driver;
 using Testcontainers.MongoDb;
 
-namespace Million.Infrastructure.IntegrationTests;
+namespace Million.Infrastructure.IntegrationTests.Common;
 
 [SetUpFixture]
 public class MongoDbFixture
@@ -15,20 +13,11 @@ public class MongoDbFixture
     public static IMongoDatabase Database => _database
         ?? throw new InvalidOperationException("Database not initialized. Run OneTimeSetUp first.");
 
-    public static string ConnectionString => _mongoContainer?.GetConnectionString()
-        ?? throw new InvalidOperationException("Container not initialized. Run OneTimeSetUp first.");
-
     [OneTimeSetUp]
     public async Task OneTimeSetUp()
     {
-        // Register conventions
-        var conventionPack = new ConventionPack
-        {
-            new CamelCaseElementNameConvention(),
-            new IgnoreExtraElementsConvention(true)
-        };
-        ConventionRegistry.Register("camelCase", conventionPack, t => true);
-
+        BsonClassMapRegister.RegisterFromAssembly(typeof(BsonClassMapRegister).Assembly);
+        
         _mongoContainer = new MongoDbBuilder()
             .WithImage("mongo:latest")
             .WithUsername("admin")

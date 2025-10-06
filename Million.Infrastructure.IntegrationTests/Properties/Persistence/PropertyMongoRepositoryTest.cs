@@ -2,6 +2,7 @@ using FluentAssertions;
 using million.domain.properties;
 using million.domain.properties.specifications;
 using million.infrastructure.Common.Persistence;
+using Million.Infrastructure.IntegrationTests.Common;
 using million.infrastructure.Properties.Persistence;
 
 namespace Million.Infrastructure.IntegrationTests.Properties.Persistence;
