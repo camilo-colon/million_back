@@ -1,7 +1,12 @@
 @host = http://localhost:5004
 
 ###
-GET {{host}}/api/Properties
+POST{{host}}/api/Properties
+Content-Type: application/json
 Accept: application/json
+
+{
+  "maxPrice" : 200000000
+}
 
 ###

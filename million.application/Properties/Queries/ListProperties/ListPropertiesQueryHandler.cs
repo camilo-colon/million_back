@@ -13,7 +13,8 @@ public class ListPropertiesQueryHandler(IPropertyRepository propertyRepository, 
         var spec = new PropertySpecificationBuilder()
             .WithName(request.Name)
             .WithAddress(request.Address)
-            .WithRangePrice(request.MinPrice, request.MaxPrice)
+            .WithMinPrice(request.MinPrice)
+            .WithMaxPrice(request.MaxPrice)
             .Build();
         
         var properties = await propertyRepository.GetBySpec(spec, cancellationToken);
@@ -23,13 +24,14 @@ public class ListPropertiesQueryHandler(IPropertyRepository propertyRepository, 
         foreach (var property in properties)
         {
             var images = await imageRepository.GetBySpec(new PropertyImageByPropertyIdSpec(property.Id), cancellationToken);
-            
+
             result.Add(new PropertyResult(
+                property.Id,
                 property.OwnerId,
                 property.Name,
                 property.Address,
                 property.Price,
-                images.Select(p => p.File).ToList()
+                images.Select(p => p.File).FirstOrDefault() ?? string.Empty
             ));
         }
 

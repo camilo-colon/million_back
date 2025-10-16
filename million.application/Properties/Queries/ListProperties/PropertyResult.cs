@@ -1,9 +1,10 @@
 namespace million.application.Properties.Queries.ListProperties;
 
 public record PropertyResult(
+    Guid Id,
     Guid IdOwner,
     string Name,
     string Address,
     decimal Price,
-    List<string> Images
+    string Image
 );

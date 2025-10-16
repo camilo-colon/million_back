@@ -1,6 +1,7 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using million.api.DTOs.Properties;
+using million.application.Properties.Queries.GetPropertyById;
 using million.application.Properties.Queries.ListProperties;
 
 namespace million.api.Controllers;
@@ -9,8 +10,8 @@ namespace million.api.Controllers;
 [Route("api/[controller]")]
 public class PropertiesController(ISender sender) : ControllerBase
 {
-    [HttpGet]
-    public async Task<IActionResult> Index([FromQuery] GetPropertiesRequest request)
+    [HttpPost]
+    public async Task<IActionResult> Index([FromBody] GetPropertiesRequest request)
     {
         var query = new ListPropertiesQuery
         {
@@ -20,6 +21,20 @@ public class PropertiesController(ISender sender) : ControllerBase
             MaxPrice = request.MaxPrice
         };
         var response = await sender.Send(query);
+        return Ok(response);
+    }
+
+    [HttpGet("{id:guid}")]
+    public async Task<IActionResult> GetById(Guid id)
+    {
+        var query = new GetPropertyByIdQuery(id);
+        var response = await sender.Send(query);
+
+        if (response == null)
+        {
+            return NotFound();
+        }
+
         return Ok(response);
     }
 }

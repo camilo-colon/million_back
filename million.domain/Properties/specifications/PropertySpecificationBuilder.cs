@@ -24,6 +24,24 @@ public class PropertySpecificationBuilder
         return this;
     }
 
+    public PropertySpecificationBuilder WithMinPrice(decimal? minPrice)
+    {
+        if (minPrice.HasValue)
+        {
+            _spec = _spec.And(new PropertyByMinPriceSpec(minPrice.Value));
+        }
+        return this; 
+    }
+    
+    public PropertySpecificationBuilder WithMaxPrice(decimal? maxPrice)
+    {
+        if (maxPrice.HasValue)
+        {
+            _spec = _spec.And(new PropertyByMaxPriceSpec(maxPrice.Value));
+        }
+        return this; 
+    } 
+
     public PropertySpecificationBuilder WithRangePrice(decimal? minPrice, decimal? maxPrice)
     {
         if (minPrice.HasValue && maxPrice.HasValue)

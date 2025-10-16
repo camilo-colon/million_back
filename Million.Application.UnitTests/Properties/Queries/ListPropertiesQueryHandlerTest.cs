@@ -87,7 +87,7 @@ public class ListPropertiesQueryHandlerTest
         result[0].Name.Should().Be("Casa en la playa");
         result[0].Address.Should().Be("Calle 123");
         result[0].Price.Should().Be(500000m);
-        result[0].Images.Should().BeEmpty();
+        result[0].Image.Should().BeEmpty();
     }
 
     [Test]
@@ -136,8 +136,7 @@ public class ListPropertiesQueryHandlerTest
         result.Should().HaveCount(1);
         result[0].IdOwner.Should().Be(ownerId);
         result[0].Name.Should().Be("Casa moderna");
-        result[0].Images.Should().HaveCount(3);
-        result[0].Images.Should().Contain(new[] { "image1.jpg", "image2.jpg", "image3.jpg" });
+        result[0].Image.Should().Be("image1.jpg");
     }
 
     [Test]
@@ -188,13 +187,11 @@ public class ListPropertiesQueryHandlerTest
 
         result[0].IdOwner.Should().Be(owner1Id);
         result[0].Name.Should().Be("Propiedad 1");
-        result[0].Images.Should().HaveCount(1);
-        result[0].Images.Should().Contain("prop1_img1.jpg");
+        result[0].Image.Should().Be("prop1_img1.jpg");
 
         result[1].IdOwner.Should().Be(owner2Id);
         result[1].Name.Should().Be("Propiedad 2");
-        result[1].Images.Should().HaveCount(2);
-        result[1].Images.Should().Contain(["prop2_img1.jpg", "prop2_img2.jpg"]);
+        result[1].Image.Should().Be("prop2_img1.jpg");
     }
 
     [Test]

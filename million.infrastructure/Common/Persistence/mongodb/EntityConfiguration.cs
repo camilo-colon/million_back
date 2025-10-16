@@ -1,4 +1,5 @@
 using million.domain.common;
+using MongoDB.Bson;
 using MongoDB.Bson.Serialization;
 using MongoDB.Bson.Serialization.Serializers;
 
@@ -15,7 +16,7 @@ public class EntityConfiguration : IBsonMapConfiguration
                 cm.AutoMap();
                 cm.SetIsRootClass(true);
                 cm.MapIdMember(c => c.Id)
-                    .SetSerializer(GuidSerializer.StandardInstance);
+                    .SetSerializer(new GuidSerializer(BsonType.String));
             });
         }
     }

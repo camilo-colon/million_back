@@ -1,8 +1,6 @@
 using FluentAssertions;
 using million.domain.properties;
 using million.domain.properties.specifications;
-using million.infrastructure.Common.Persistence;
-using Million.Infrastructure.IntegrationTests.Common;
 using million.infrastructure.Properties.Persistence;
 
 namespace Million.Infrastructure.IntegrationTests.Properties.Persistence;
@@ -11,13 +9,6 @@ namespace Million.Infrastructure.IntegrationTests.Properties.Persistence;
 public class PropertyMongoRepositoryTest
 {
     private PropertyMongoRepository _repository = null!;
-
-    [OneTimeSetUp]
-    public void OneTimeSetUp()
-    {
-        // Register BsonClassMaps using the infrastructure configuration
-        BsonClassMapRegister.RegisterFromAssembly(typeof(BsonClassMapRegister).Assembly);
-    }
 
     [SetUp]
     public async Task SetUp()
@@ -32,9 +23,9 @@ public class PropertyMongoRepositoryTest
         // Arrange
         var properties = new List<Property>
         {
-            new Property(Guid.NewGuid(), "Casa en la playa", "Calle Sol 123", 150000m, "C1", 2020),
-            new Property(Guid.NewGuid(), "Casa moderna", "Avenida Luna 456", 350000m, "C2", 2021),
-            new Property(Guid.NewGuid(), "Apartamento céntrico", "Calle Sol 789", 200000m, "C3", 2022)
+           new(Guid.NewGuid(), "Casa en la playa", "Calle Sol 123", 150000m, "C1", 2020),
+           new(Guid.NewGuid(), "Casa moderna", "Avenida Luna 456", 350000m, "C2", 2021),
+           new(Guid.NewGuid(), "Apartamento céntrico", "Calle Sol 789", 200000m, "C3", 2022)
         };
 
         var collection = MongoDbFixture.Database.GetCollection<Property>("properties");
@@ -57,10 +48,10 @@ public class PropertyMongoRepositoryTest
         // Arrange
         var properties = new List<Property>
         {
-            new Property(Guid.NewGuid(), "Casa en la playa", "Calle Sol 123", 150000m, "C1", 2020),
-            new Property(Guid.NewGuid(), "Casa moderna", "Avenida Luna 456", 350000m, "C2", 2021),
-            new Property(Guid.NewGuid(), "Apartamento céntrico", "Calle Sol 789", 200000m, "C3", 2022),
-            new Property(Guid.NewGuid(), "Casa de campo", "Carretera Norte 202", 250000m, "C4", 2024)
+           new(Guid.NewGuid(), "Casa en la playa", "Calle Sol 123", 150000m, "C1", 2020),
+           new(Guid.NewGuid(), "Casa moderna", "Avenida Luna 456", 350000m, "C2", 2021),
+           new(Guid.NewGuid(), "Apartamento céntrico", "Calle Sol 789", 200000m, "C3", 2022),
+           new(Guid.NewGuid(), "Casa de campo", "Carretera Norte 202", 250000m, "C4", 2024)
         };
 
         var collection = MongoDbFixture.Database.GetCollection<Property>("properties");
@@ -86,9 +77,9 @@ public class PropertyMongoRepositoryTest
         // Arrange
         var properties = new List<Property>
         {
-            new Property(Guid.NewGuid(), "Casa en la playa", "Calle Sol 123", 150000m, "C1", 2020),
-            new Property(Guid.NewGuid(), "Casa moderna", "Avenida Luna 456", 350000m, "C2", 2021),
-            new Property(Guid.NewGuid(), "Apartamento céntrico", "Calle Sol 789", 200000m, "C3", 2022)
+           new(Guid.NewGuid(), "Casa en la playa", "Calle Sol 123", 150000m, "C1", 2020),
+           new(Guid.NewGuid(), "Casa moderna", "Avenida Luna 456", 350000m, "C2", 2021),
+           new(Guid.NewGuid(), "Apartamento céntrico", "Calle Sol 789", 200000m, "C3", 2022)
         };
 
         var collection = MongoDbFixture.Database.GetCollection<Property>("properties");

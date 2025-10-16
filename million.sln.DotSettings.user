@@ -15,10 +15,11 @@
 	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=7020124F_002D9FFC_002D4AC3_002D8F3D_002DAAB8E0240759_002Ff_003AWebApplicationBuilder_002Ecs_002Fl_003A_002E_002E_003F_002E_002E_003FLibrary_003FApplication_0020Support_003FJetBrains_003FRider2025_002E1_003Fresharper_002Dhost_003FSourcesCache_003F504c8bdd5124a1bbe189b9d9082277bdbfeff4c69af26aa899960a929e99_003FWebApplicationBuilder_002Ecs/@EntryIndexedValue">ForceIncluded</s:String>
 	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=7020124F_002D9FFC_002D4AC3_002D8F3D_002DAAB8E0240759_002Ff_003AWebApplication_002Ecs_002Fl_003A_002E_002E_003F_002E_002E_003FLibrary_003FApplication_0020Support_003FJetBrains_003FRider2025_002E1_003Fresharper_002Dhost_003FSourcesCache_003Ff0c16cda8a141e194c9151fd8f6acd0f93ef39e54a2a250baf2e5b2fa1fac6_003FWebApplication_002Ecs/@EntryIndexedValue">ForceIncluded</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=99cd6fe8_002D9af1_002D4187_002D80c6_002Da31a0cf44afb/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="Tests" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
-  &lt;TestAncestor&gt;
-    &lt;TestId&gt;NUnit3x::35332FE1-C270-494A-972D-2AE5C55E7FAD::net9.0::Million.Application.UnitTests.Properties.Queries.ListPropertiesQueryHandlerTest&lt;/TestId&gt;
-    &lt;TestId&gt;NUnit3x::D5D07867-AE8B-4CD0-A24A-C2EB6BF10A7D::net9.0::Million.Domain.UnitTests.Common.Specifications.SpecificationTest&lt;/TestId&gt;
-    &lt;TestId&gt;NUnit3x::2D323009-4A9A-4EB6-B392-90BC56C649E5::net9.0::Million.Infrastructure.IntegrationTests.Common.Persistence.SpecificationToMongoFilterConverterTest&lt;/TestId&gt;
-    &lt;TestId&gt;NUnit3x::2D323009-4A9A-4EB6-B392-90BC56C649E5::net9.0::Million.Infrastructure.IntegrationTests.Common.Persistence.GenericMongoRepositoryTest&lt;/TestId&gt;
-  &lt;/TestAncestor&gt;
+  &lt;Project Location="/Users/camilo/RiderProjects/million" Presentation="&amp;lt;test&amp;gt;" /&gt;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=b90b622e_002Df8eb_002D4aa8_002Dba8b_002D9ff7e516e7c3/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="GetBySpec_ShouldRetrievePropertiesFromDatabase" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;Or&gt;
+    &lt;Project Location="/Users/camilo/RiderProjects/million/Million.Infrastructure.IntegrationTests" Presentation="&amp;lt;test&amp;gt;\&amp;lt;Million.Infrastructure.IntegrationTests&amp;gt;" /&gt;
+    &lt;Project Location="/Users/camilo/RiderProjects/million/Million.Domain.UnitTests" Presentation="&amp;lt;test&amp;gt;\&amp;lt;Million.Domain.UnitTests&amp;gt;" /&gt;
+  &lt;/Or&gt;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

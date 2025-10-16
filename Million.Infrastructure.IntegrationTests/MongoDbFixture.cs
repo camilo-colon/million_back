@@ -2,7 +2,7 @@ using million.infrastructure.Common.Persistence;
 using MongoDB.Driver;
 using Testcontainers.MongoDb;
 
-namespace Million.Infrastructure.IntegrationTests.Common;
+namespace Million.Infrastructure.IntegrationTests;
 
 [SetUpFixture]
 public class MongoDbFixture

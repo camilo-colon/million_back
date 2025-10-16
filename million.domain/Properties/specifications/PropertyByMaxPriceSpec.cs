@@ -3,10 +3,10 @@ using million.domain.Common.specifications;
 
 namespace million.domain.properties.specifications;
 
-public class PropertyByAddressSpec(string address) : Specification<Property>
+public class PropertyByMaxPriceSpec(decimal price) : Specification<Property>
 {
     public override Expression<Func<Property, bool>> ToExpression()
     {
-        return p => p.Address.Contains(address);
+        return p => p.Price <= price;
     }
 }
